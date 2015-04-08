@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.Toolbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -25,7 +29,7 @@ public class NavigationDrawerFragment extends Fragment {
     public static final String KEY_USER_LEARNED_DRAWER="user_learned_drawer";
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-
+    private InformationAdapter adapter;
     private boolean mUserLearnedDrawer; //User has learned of drawer's existence
     private boolean mFromSavedInstance;
 
@@ -55,7 +59,35 @@ public class NavigationDrawerFragment extends Fragment {
 
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView)layout.findViewById(R.id.drawerList);
+        adapter = new InformationAdapter(getActivity(), getData());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return layout;
+    }
+
+    public static List<Information> getData()
+    {
+        List<Information> data = new ArrayList<>();
+        int[] icons={R.mipmap.ic_action, R.mipmap.ic_search, R.mipmap.ic_action, R.mipmap.ic_search, R.mipmap.ic_action, R.mipmap.ic_search, R.mipmap.ic_action, R.mipmap.ic_search, R.mipmap.ic_action, R.mipmap.ic_search};
+        String[] titles={"My Device", "My Incidents","Map", "People", "Locations", "Nodes", "Log", "About App", "Log", "About App"};
+
+        for(int i  =0; i < titles.length && i<icons.length; i++)
+        {
+            Information current = new Information();
+            current.iconId=icons[i];
+            current.title=titles[i];
+
+            if(i == 2)
+            {
+                current.iconId=R.mipmap.ic_launcher;
+                current.title="Find";
+            }
+
+
+            data.add(current);
+
+        }
+        return data;
     }
 
 
