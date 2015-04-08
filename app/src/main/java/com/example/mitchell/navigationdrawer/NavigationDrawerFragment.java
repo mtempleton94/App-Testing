@@ -2,6 +2,7 @@ package com.example.mitchell.navigationdrawer;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,27 +22,28 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends Fragment
+{
 
-    private RecyclerView recyclerView;
-
+    private View containerView;
     public static final String PREF_FILE_NAME="testPref";
     public static final String KEY_USER_LEARNED_DRAWER="user_learned_drawer";
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-    private InformationAdapter adapter;
     private boolean mUserLearnedDrawer; //User has learned of drawer's existence
     private boolean mFromSavedInstance;
 
-    private View containerView;
-
+    //Recycler View
+    private RecyclerView myRecyclerView;
+    private InformationAdapter myAdapter;
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         mUserLearnedDrawer=Boolean.valueOf(readFromPreferences(getActivity(),KEY_USER_LEARNED_DRAWER, "false" ));
 
@@ -58,18 +60,23 @@ public class NavigationDrawerFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        recyclerView = (RecyclerView)layout.findViewById(R.id.drawerList);
-        adapter = new InformationAdapter(getActivity(), getData());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        myAdapter = new InformationAdapter(getActivity(), getData());
+
+        myRecyclerView = (RecyclerView)layout.findViewById(R.id.myDrawerList);
+        myRecyclerView.setAdapter(myAdapter);
+        myRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return layout;
     }
 
     public static List<Information> getData()
     {
         List<Information> data = new ArrayList<>();
-        int[] icons={R.mipmap.ic_action, R.mipmap.ic_search, R.mipmap.ic_action, R.mipmap.ic_search, R.mipmap.ic_action, R.mipmap.ic_search, R.mipmap.ic_action, R.mipmap.ic_search, R.mipmap.ic_action, R.mipmap.ic_search};
-        String[] titles={"My Device", "My Incidents","Map", "People", "Locations", "Nodes", "Log", "About App", "Log", "About App"};
+        int[] icons={R.mipmap.ic_action, R.mipmap.ic_search};
+        String[] titles={"My Device", "My Incidents"};
+
+
+        //,"Map", "People", "Locations", "Nodes", "Log", "About App", "Log", "About App"
 
         for(int i  =0; i < titles.length && i<icons.length; i++)
         {
@@ -77,11 +84,11 @@ public class NavigationDrawerFragment extends Fragment {
             current.iconId=icons[i];
             current.title=titles[i];
 
-            if(i == 2)
+            /*if(i == 2)
             {
                 current.iconId=R.mipmap.ic_launcher;
                 current.title="Find";
-            }
+            }*/
 
 
             data.add(current);
@@ -91,7 +98,14 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-    public void setUp(int fragmentId, DrawerLayout drawerLayout, Toolbar toolbar) {
+
+
+
+    //===================================================================================================
+    // Setting Up
+    //===================================================================================================
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, Toolbar toolbar)
+    {
         containerView=getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(),drawerLayout, toolbar, R.string.drawer_open,R.string.drawer_close){
@@ -144,4 +158,7 @@ public class NavigationDrawerFragment extends Fragment {
         SharedPreferences sharedPreferences=context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(preferenceName,defaultValue);
     }
+
+
+    //===================================================================================================
 }

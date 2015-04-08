@@ -19,14 +19,41 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/drawerList"
-        android:layout_width="match_parent"
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/myDrawerList"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@+id/containerDrawerImage">
+        </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/containerDrawerImage">
+        android:text="My Device"
+        android:id="@+id/myDeviceButton"
+        android:layout_below="@+id/myDrawerList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="openMyDevice"/>
 
 
-    </android.support.v7.widget.RecyclerView>
+    <!--
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find"
+                android:id="@+id/findTitle"
+                android:layout_below="@+id/myDrawerList"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/findDrawerList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/findTitle">
+            </android.support.v7.widget.RecyclerView> -->
+
 
 
 </RelativeLayout>
