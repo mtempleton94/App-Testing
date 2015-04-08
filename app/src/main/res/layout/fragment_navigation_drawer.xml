@@ -1,22 +1,32 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEE"
     tools:context="com.example.mitchell.navigationdrawer.NavigationDrawerFragment">
 
+    <LinearLayout
 
-    <TextView android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="WFU App"
-        android:layout_below="@+id/wfu_logo_image"/>
-    
-    <ImageView
-        android:id="@+id/wfu_logo_image"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:src="@drawable/logo"
-        android:layout_centerHorizontal="true"/>
+        android:id="@+id/containerDrawerImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/wfu_logo_image"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/drawerList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </RelativeLayout>
