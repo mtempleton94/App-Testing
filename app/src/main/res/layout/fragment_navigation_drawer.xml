@@ -20,12 +20,38 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/containerDrawerImage">
+
+        <ListView
+            android:id="@+id/add_journalentry_menuitem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="0dp"/>
+        <ListView
+            android:id="@+id/list_journal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="0dp"/>
+    </LinearLayout>
+
+
+
+<!--
         <android.support.v7.widget.RecyclerView
             android:id="@+id/myDrawerList"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_below="@+id/containerDrawerImage">
         </android.support.v7.widget.RecyclerView>
+
+
 
     <Button
         android:layout_width="wrap_content"
@@ -37,7 +63,7 @@
         android:layout_alignParentStart="true"
         android:onClick="openMyDevice"/>
 
-
+-->
     <!--
 
             <TextView

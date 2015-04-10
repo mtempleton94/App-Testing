@@ -62,9 +62,9 @@ public class NavigationDrawerFragment extends Fragment
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         myAdapter = new InformationAdapter(getActivity(), getData());
 
-        myRecyclerView = (RecyclerView)layout.findViewById(R.id.myDrawerList);
+      /*  myRecyclerView = (RecyclerView)layout.findViewById(R.id.myDrawerList);
         myRecyclerView.setAdapter(myAdapter);
-        myRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        myRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));*/
 
         return layout;
     }
